@@ -1,0 +1,10 @@
+This test exercises various scenarios for account and symbol creation.
+
+test01: simple test that was provided in the assignment spec
+test02: account creation only (no symbol)
+test03: symbol creation only (for the account created in test02)
+test04: create an account and symbol with a fractional # shares
+test05: create an account with a fractional $ value
+test06: create multiple accounts (in 1 request)
+test07: create one symbol in multiple accounts (in 1 request)
+test08: create multiple symbols in one account (in 1 request)
