@@ -2,16 +2,21 @@
 
 ## Project Overview
 
-In this project, I developed the backend of a small stock exchange server program that can handle thousands of concurrent transaction requests from buyer and sellers at the same time.
+This project implements an exchange matching engine with database (PostgreSQL), which matches buy and sell orders for a stock/commodities market. The engine supports account management, order creation, matching, execution, cancellation, and querying. The server communicates using XML over TCP and follows a specific protocol to handle requests and responses.
 
-*     Buyers and sellers create account on the server and deposit funds to start the market.
-*     Participants are matched on the market based on their selling and buying prices, and their transactions are recorded in the database, PostgreSQL.
-*     I used SQLAlchemy to interact with the database.
-*     After each transaction, buyers' and sellers' account balances are updated to reflect the transactions.
+**Tech used: Python, Docker, Docker-compose, PostgreSQL, SQLAlchemy, TCP Sockets**
+
+## Features
+
+1. **Account Management**: Create and manage accounts with unique IDs and balances.
+2. **Symbol Management**: Create and manage symbols representing stocks or commodities.
+3. **Order Management**: Place, execute, cancel, and query orders for buying and selling symbols.
+4. **Order Matching**: Match buy and sell orders based on limit prices and execution rules.
+5. **Error Handling**: Handle errors gracefully and provide informative error messages.
 
 ## Communication 
 
-* Buyers and sellers make TCP connection requests with the server.
+* The server listens for incoming connections on port 12345. Clients send requests in the following XML format. 
 * XML is used as the primary data format for communication between clients and the server.
     * XML (eXtensible Markup Language) is chosen for its flexibility and ability to structure complex data in a readable format.
     * Each request and response is encapsulated within XML tags to ensure that data is self-descriptive and easy to parse.
@@ -62,7 +67,10 @@ In this project, I developed the backend of a small stock exchange server progra
         </results>
         ```
 
-## To run the test
+## To scalability tests: 
+
+Navigate to the `testing` directory and run the provided test scripts to analyze the server's performance across different CPU core counts.
+
 Set the number of tests to generate in generate_tests.py 
     N = 5000 for example
 Run python3 generate_tests.py
